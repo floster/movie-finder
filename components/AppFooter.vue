@@ -7,7 +7,7 @@
       class="text-gray-600 hover:text-gray-900"
       title="MovieFinder's Github repository"
     >
-      <Icon name="jam:github" size="1.5rem" />
+      <Icon name="jam:github" size="2rem" />
     </a>
   </div>
 </template>
