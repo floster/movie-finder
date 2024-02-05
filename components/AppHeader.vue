@@ -1,5 +1,8 @@
 <template>
-  <div class="py-2">
-    <h1 class="text-indigo-100">MovieFinder</h1>
+  <div class="flex items-center justify-between py-3">
+    <h1 class="text-indigo-100 text-xl">MovieFinder</h1>
+    <el-button type="primary" size="large" plain
+      ><NuxtLink to="/add_movie">add a movie</NuxtLink></el-button
+    >
   </div>
 </template>

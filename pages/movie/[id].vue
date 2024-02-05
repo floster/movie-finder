@@ -18,12 +18,13 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <section class="flex flex-col md:flex-row">
-    <el-image class="basis-3/12" :src="poster" fit="cover" />
+    <el-image class="basis-3/12 rounded shadow-xl" :src="poster" fit="cover" />
     <div class="flex flex-col grow gap-y-3 py-2 px-3">
       <el-tag class="self-start" effect="plain">{{ label }}</el-tag>
       <h2 class="text-xl">{{ title }}</h2>
       <p class="italic">{{ director }}</p>
     </div>
+    <!-- TODO: hide if went to this page directly -->
     <el-button type="primary" :icon="ArrowLeft" class="mt-8 md:mt-0"
       >back to results</el-button
     >

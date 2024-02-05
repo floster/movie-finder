@@ -27,5 +27,3 @@ const searchTerm = ref("");
     </form>
   </div>
 </template>
-
-<style scoped></style>

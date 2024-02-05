@@ -1,5 +1,5 @@
 <script lang="ts" setup></script>
 
 <template>
-  <SearchForm />
+  <SearchForm class="mt-[10%]" />
 </template>
