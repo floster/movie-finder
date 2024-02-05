@@ -9,13 +9,18 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
+    "@nuxtjs/google-fonts",
     "@element-plus/nuxt",
     "nuxt-icon",
-    "@nuxtjs/google-fonts",
+    "nuxt-swiper",
   ],
   googleFonts: {
     families: {
       Inter: [400, 700],
     },
+  },
+  swiper: {
+    // TODO: remove unnecessary modules
+    modules: ["navigation", "pagination"],
   },
 });
