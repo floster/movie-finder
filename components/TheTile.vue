@@ -1,30 +1,24 @@
 <script lang="ts" setup>
-type Props = {
-  poster?: string;
-  title?: string;
-  director?: string;
-  label?: string;
-};
+import type { SearchResult } from "~/types/omdb";
 
-withDefaults(defineProps<Props>(), {
-  poster: "https://image.tmdb.org/t/p/w342/dhVYlfMNc2bfXPB83LLL00I4l9n.jpg",
-  title: "Shaun the Sheep Movie",
-  director: "Mark Burton",
-  label: "2015",
-});
+defineProps<{ data: SearchResult }>();
 </script>
 
 <template>
-  <el-card
-    class="box-card focus-visible:border-sky-600 focus:border-purple-600"
-    body-style="padding: 0"
-    tabindex="0"
+  <NuxtLink
+    :to="`movie/${data.imdbID}`"
+    class="flex w-full focus-visible:border-purple-600 shadow-lg hover:shadow-purple-300"
   >
-    <el-image class="w-full h-full" :src="poster" fit="cover" />
-    <div class="flex flex-col gap-y-3 py-2 px-3">
-      <el-tag class="self-start">{{ label }}</el-tag>
-      <h4 class="text-lg">{{ title }}</h4>
-      <p class="italic">{{ director }}</p>
-    </div>
-  </el-card>
+    <el-card class="box-card w-full" body-style="padding: 0" tabindex="0">
+      <el-image
+        class="w-full h-full aspect-[2/3]"
+        :src="data.poster"
+        fit="cover"
+      />
+      <div class="flex flex-col gap-y-3 py-2 px-3">
+        <el-tag class="self-start">{{ data.year }}</el-tag>
+        <h4 class="text-lg">{{ data.title }}</h4>
+      </div>
+    </el-card></NuxtLink
+  >
 </template>

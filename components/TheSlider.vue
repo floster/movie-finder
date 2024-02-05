@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-const modules = [SwiperPagination, SwiperNavigation];
+const modules = [
+  SwiperPagination,
+  SwiperNavigation,
+  SwiperMousewheel,
+  SwiperKeyboard,
+];
 const swiper = ref(null);
 const onSwiper = (Swiper: any) => {
   swiper.value = Swiper;
@@ -8,14 +13,6 @@ const onSwiper = (Swiper: any) => {
 
 <template>
   <div class="">
-    <!-- <div class="flex items-center justify-end mb-3">
-      <el-button @click="swiper.slidePrev(300)"
-        ><Icon name="ph:caret-left-bold"
-      /></el-button>
-      <el-button @click="swiper.slideNext(300)"
-        ><Icon name="ph:caret-right-bold"
-      /></el-button>
-    </div> -->
     <Swiper
       :modules="modules"
       :breakpoints="{
@@ -28,12 +25,12 @@ const onSwiper = (Swiper: any) => {
       :allow-touch-move="true"
       :pagination="{ enabled: true, clickable: true, type: 'bullets' }"
       navigation
+      mousewheel
+      keyboard
       :loop="true"
       @swiper="onSwiper"
     >
-      <SwiperSlide v-for="slide in 10" :key="slide">
-        <TheTile />
-      </SwiperSlide>
+      <slot />
     </Swiper>
   </div>
 </template>

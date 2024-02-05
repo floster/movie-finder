@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ArrowLeft } from "@element-plus/icons-vue";
-
 const movieID = useRoute().params.id;
 
 const { data } = await useFetch(`/api/movie/${movieID}`);
