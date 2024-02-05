@@ -1,34 +1,29 @@
 <script lang="ts" setup>
 import { ArrowLeft } from "@element-plus/icons-vue";
 
-type Props = {
-  poster?: string;
-  title?: string;
-  director?: string;
-  label?: string;
-};
+const movieID = useRoute().params.id;
 
-withDefaults(defineProps<Props>(), {
-  poster: "https://image.tmdb.org/t/p/w342/dhVYlfMNc2bfXPB83LLL00I4l9n.jpg",
-  title: "Shaun the Sheep Movie",
-  director: "Mark Burton",
-  label: "2015",
-});
+const { data } = await useFetch(`/api/movie/${movieID}`);
+
+const noMovieData = computed(() => !data.value?.response);
 </script>
 
 <template>
-  <section class="flex flex-col md:flex-row">
-    <el-image class="basis-3/12 rounded shadow-xl" :src="poster" fit="cover" />
-    <div class="flex flex-col grow gap-y-3 py-2 px-3">
-      <el-tag class="self-start" effect="plain">{{ label }}</el-tag>
-      <h2 class="text-xl">{{ title }}</h2>
-      <p class="italic">{{ director }}</p>
-    </div>
-    <!-- TODO: hide if went to this page directly -->
-    <el-button type="primary" :icon="ArrowLeft" class="mt-8 md:mt-0"
-      >back to results</el-button
-    >
-  </section>
-</template>
+  <NuxtErrorBoundary>
+    <TheError
+      v-if="noMovieData"
+      message="No movie found"
+      backTo="/"
+      backToLabel="back to results/home"
+    />
+    <TheMovie v-else :data="data!" />
 
-<style scoped></style>
+    <template #error="{ error }">
+      <TheError
+        message="An error occurred while fetching the movie"
+        backTo="/"
+        backToLabel="back to results/home"
+      />
+    </template>
+  </NuxtErrorBoundary>
+</template>

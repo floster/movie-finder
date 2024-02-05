@@ -1,9 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  imports: { dirs: ["types"] },
   app: {
     head: {
       title: "MovieFinder",
+    },
+  },
+  runtimeConfig: {
+    OMDB_API_KEY: process.env.OMDB_API_KEY,
+    public: {
+      OMDB_API_BASE: "http://www.omdbapi.com/?apikey=",
     },
   },
   modules: [
@@ -20,7 +27,6 @@ export default defineNuxtConfig({
     },
   },
   swiper: {
-    // TODO: remove unnecessary modules
     modules: ["navigation", "pagination"],
   },
 });
