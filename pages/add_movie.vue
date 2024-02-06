@@ -85,5 +85,3 @@ const resetForm = (formEl: FormInstance | undefined) => {
     </el-form>
   </div>
 </template>
-
-<style scoped></style>

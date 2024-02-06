@@ -16,6 +16,7 @@ const clearTermHandler = () => {
 // just make redirect to the search page
 // with the search term as query param
 const onSubmit = () => {
+  if (!searchTerm.value) return;
   router.push({ path: "/search", query: { q: searchTerm.value } });
 };
 </script>
@@ -34,7 +35,6 @@ const onSubmit = () => {
       </el-input>
       <el-button
         :icon="Search"
-        :disabled="searchTerm === ''"
         type="primary"
         size="large"
         native-type="submit"

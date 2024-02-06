@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "nuxt-icon",
     "nuxt-swiper",
+    "@nuxt/image"
   ],
   googleFonts: {
     families: {

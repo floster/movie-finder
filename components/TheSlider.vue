@@ -13,7 +13,8 @@ const onSwiper = (Swiper: Swiper) => {
 </script>
 
 <template>
-  <div class="">
+  <div class="relative">
+    <div class="swiper-pagination"></div>
     <Swiper
       :modules="modules"
       :breakpoints="{
@@ -24,9 +25,14 @@ const onSwiper = (Swiper: Swiper) => {
       }"
       :space-between="8"
       :allow-touch-move="true"
-      :pagination="{ enabled: true, clickable: true, type: 'bullets' }"
+      :pagination="{
+        enabled: true,
+        clickable: true,
+        type: 'progressbar',
+        el: '.swiper-pagination',
+      }"
       mousewheel
-      :free-mode="{ enabled: true }"
+      navigation
       @swiper="onSwiper"
     >
       <slot />
@@ -39,7 +45,7 @@ const onSwiper = (Swiper: Swiper) => {
   @apply py-3;
 }
 .swiper-pagination {
-  @apply relative mt-4;
+  /* @apply flex gap-x-1 -top-10 mx-auto left-0 right-0; */
 }
 
 .swiper-button-next,

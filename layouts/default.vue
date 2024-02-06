@@ -4,13 +4,15 @@
   <div class="common-layout font-sans text-indigo-950">
     <el-container class="min-h-screen">
       <el-header height="max-content" class="bg-indigo-900"
-        ><AppHeader
+        ><AppHeader class="max-w-5xl mx-auto"
       /></el-header>
       <el-main class="bg-indigo-50">
-        <slot />
+        <div class="max-w-5xl mx-auto md:py-6">
+          <slot />
+        </div>
       </el-main>
       <el-footer height="max-content" class="bg-indigo-200"
-        ><AppFooter
+        ><AppFooter class="max-w-5xl mx-auto"
       /></el-footer>
     </el-container>
   </div>

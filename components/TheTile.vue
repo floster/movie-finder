@@ -17,7 +17,7 @@ defineProps<{ data: SearchResult }>();
       />
       <div class="flex flex-col gap-y-3 py-2 px-3">
         <el-tag class="self-start">{{ data.year }}</el-tag>
-        <h4 class="text-lg">{{ data.title }}</h4>
+        <h4 class="text-base">{{ data.title }}</h4>
       </div>
     </el-card></NuxtLink
   >

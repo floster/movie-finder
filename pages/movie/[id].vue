@@ -12,7 +12,7 @@ const noMovieData = computed(() => !data.value?.response);
       v-if="noMovieData"
       message="No movie found"
       backTo="/"
-      backToLabel="back to results/home"
+      backToLabel="back to home"
     />
     <TheMovie v-else :data="data!" />
 
@@ -20,7 +20,7 @@ const noMovieData = computed(() => !data.value?.response);
       <TheError
         message="An error occurred while fetching the movie"
         backTo="/"
-        backToLabel="back to results/home"
+        backToLabel="back to home"
       />
     </template>
   </NuxtErrorBoundary>
