@@ -37,14 +37,23 @@ const rules = reactive<FormRules<typeof movieForm>>({
   title: [{ required: true, validator: validateText, trigger: "blur" }],
   director: [{ required: true, validator: validateText, trigger: "blur" }],
   year: [{ required: true, validator: checkYear, trigger: "blur" }],
-  poster: [{ required: true, message: "Please upload the movie poster" }],
+  // poster: [{ required: true, message: "Please upload the movie poster" }],
 });
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      console.log("submit!");
+      const body = await $fetch("/api/add_movie", {
+        method: "post",
+        body: {
+          title: movieForm.title,
+          director: movieForm.director,
+          year: movieForm.year,
+          poster: movieForm.poster,
+        },
+      });
+      console.log(body);
     } else {
       console.log("error submit!");
       return false;

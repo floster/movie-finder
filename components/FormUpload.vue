@@ -6,7 +6,7 @@
       auto-upload
       :before-upload="beforePosterUpload"
       :on-success="handleAvatarSuccess"
-      action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+      action="api/add_movie"
     >
       <el-icon class="el-icon--upload"><upload-filled /></el-icon>
       <div class="el-upload__text">
@@ -41,17 +41,15 @@ const handleAvatarSuccess: UploadProps["onSuccess"] = (
 };
 
 const beforePosterUpload: UploadProps["beforeUpload"] = (rawFile) => {
-  console.log("beforePosterUpload", rawFile.type);
-
   if (
     rawFile.type !== "image/jpeg" &&
     rawFile.type !== "image/jpg" &&
     rawFile.type !== "image/png"
   ) {
-    ElMessage.error("Avatar picture must be JPG or PNG format!");
+    ElMessage.error("Poster picture must be JPG or PNG format!");
     return false;
   } else if (rawFile.size / 1024 / 1024 > 1) {
-    ElMessage.error("Avatar picture size can not exceed 1MB!");
+    ElMessage.error("Poster picture size can not exceed 1MB!");
     return false;
   }
   return true;
