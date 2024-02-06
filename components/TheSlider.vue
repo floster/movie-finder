@@ -1,10 +1,5 @@
 <script lang="ts" setup>
-const modules = [
-  SwiperPagination,
-  SwiperNavigation,
-  SwiperMousewheel,
-  SwiperKeyboard,
-];
+const modules = [SwiperPagination, SwiperNavigation, SwiperKeyboard];
 const swiper = ref(null);
 const onSwiper = (Swiper: any) => {
   swiper.value = Swiper;
@@ -16,16 +11,15 @@ const onSwiper = (Swiper: any) => {
     <Swiper
       :modules="modules"
       :breakpoints="{
-        640: { slidesPerView: 2, spaceBetween: 8 },
-        768: { slidesPerView: 3, spaceBetween: 8 },
-        1024: { slidesPerView: 4, spaceBetween: 8 },
-        1280: { slidesPerView: 5, spaceBetween: 8 },
+        640: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        1024: { slidesPerView: 4 },
+        1280: { slidesPerView: 5 },
       }"
       :space-between="8"
       :allow-touch-move="true"
       :pagination="{ enabled: true, clickable: true, type: 'bullets' }"
       navigation
-      mousewheel
       keyboard
       :loop="true"
       @swiper="onSwiper"
@@ -42,7 +36,9 @@ const onSwiper = (Swiper: any) => {
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply p-1 w-12 h-12 bg-slate-950/40 rounded-md text-indigo-400;
+  --swiper-navigation-size: 36px;
+
+  @apply p-2 w-12 h-12 bg-black/20 rounded-md text-indigo-500;
 }
 
 .swiper-pagination-bullet-active {

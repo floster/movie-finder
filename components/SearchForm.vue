@@ -1,14 +1,21 @@
 <script lang="ts" setup>
 import { Search } from "@element-plus/icons-vue";
 
-// https://www.omdbapi.com/?apikey=b2b568c7&t=tenet&plot=short
+const router = useRouter();
+const search = useSearchStore();
 
-const searchTerm = ref("");
+const searchTerm = ref(search.query);
+
+// just make redirect to the search page
+// with the search term as query param
+const onSubmit = () => {
+  router.push({ path: "/search", query: { q: searchTerm.value } });
+};
 </script>
 
 <template>
   <div class="flex flex-col gap-y-3">
-    <form class="flex items-center">
+    <form class="flex items-center" @submit.prevent="onSubmit">
       <el-input
         v-model="searchTerm"
         placeholder="search by movie title"
