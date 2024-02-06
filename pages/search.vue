@@ -1,6 +1,15 @@
 <script setup lang="ts">
 const route = useRoute();
 
+const title = computed(() => {
+  const _query = route.query.q ? `results for '${route.query.q}' ` : "";
+  return `Search ${_query}| MovieFinder`;
+});
+
+useHead({
+  title,
+});
+
 // get the search store
 const search = useSearchStore();
 

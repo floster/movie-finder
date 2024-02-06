@@ -3,6 +3,10 @@ const movieID = useRoute().params.id;
 
 const { data } = await useFetch(`/api/movie/${movieID}`);
 
+useHead({
+  title: `${data.value?.title} | MovieFinder`,
+});
+
 const noMovieData = computed(() => !data.value?.response);
 </script>
 

@@ -2,6 +2,10 @@
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 
+useHead({
+  title: "Add a movie | MovieFinder",
+});
+
 const movieFormRef = ref<FormInstance>();
 
 const checkYear = (rule: any, value: any, callback: any) => {
