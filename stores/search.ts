@@ -4,13 +4,13 @@ export const useSearchStore = defineStore("search", {
   state: () => ({
     query: "",
     page: 1,
-    results: null as SearchResult[] | null,
+    results: [] as SearchResult[],
     resultsQty: 0,
     searchInProgress: false,
   }),
   getters: {
     hasResults: (state) => {
-      return state.results && state.results?.length > 0;
+      return state.results.length > 0;
     },
     pagesQty: (state) => {
       return Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
@@ -35,7 +35,12 @@ export const useSearchStore = defineStore("search", {
       const data = await $fetch(
         `/api/search?q=${this.query}&page=${this.page}`
       );
-      this.results = data?.results || null;
+
+      if (data && data.results) {
+        this.results.push(...data.results);
+      } else {
+        this.results = [];
+      }
       this.resultsQty = parseInt(data?.qty || "0", 10);
 
       this.searchInProgress = false;

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import type Swiper from "swiper";
 const modules = [SwiperPagination, SwiperNavigation, SwiperKeyboard];
-const swiper = ref(null);
-const onSwiper = (Swiper: any) => {
+const swiper = ref(null) as Ref<Swiper | null>;
+const onSwiper = (Swiper: Swiper) => {
   swiper.value = Swiper;
 };
 </script>
@@ -21,7 +22,6 @@ const onSwiper = (Swiper: any) => {
       :pagination="{ enabled: true, clickable: true, type: 'bullets' }"
       navigation
       keyboard
-      :loop="true"
       @swiper="onSwiper"
     >
       <slot />
