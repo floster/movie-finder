@@ -16,7 +16,7 @@ export const useSearchStore = defineStore("search", {
       return Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
     },
     hasMoreResults: (state) => {
-      return state.page <= Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
+      return state.page < Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
     },
   },
   actions: {
@@ -27,6 +27,8 @@ export const useSearchStore = defineStore("search", {
     resetSearch() {
       this.page = 1;
       this.query = "";
+      this.resultsQty = 0;
+      this.results = [];
     },
     async search() {
       if (!this.query) return;
@@ -36,11 +38,7 @@ export const useSearchStore = defineStore("search", {
         `/api/search?q=${this.query}&page=${this.page}`
       );
 
-      if (data && data.results) {
-        this.results.push(...data.results);
-      } else {
-        this.results = [];
-      }
+      this.results = data && data.results ? data.results : [];
       this.resultsQty = parseInt(data?.qty || "0", 10);
 
       this.searchInProgress = false;
@@ -48,6 +46,11 @@ export const useSearchStore = defineStore("search", {
     async getNextSearchPage() {
       if (!this.hasMoreResults) return;
       this.page = this.page + 1;
+      await this.search();
+    },
+    async getPrevSearchPage() {
+      if (this.page <= 1) return;
+      this.page = this.page - 1;
       await this.search();
     },
   },

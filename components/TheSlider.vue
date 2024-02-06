@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import type Swiper from "swiper";
-const modules = [SwiperPagination, SwiperNavigation, SwiperKeyboard];
+const modules = [
+  SwiperPagination,
+  SwiperNavigation,
+  SwiperMousewheel,
+  SwiperFreeMode,
+];
 const swiper = ref(null) as Ref<Swiper | null>;
 const onSwiper = (Swiper: Swiper) => {
   swiper.value = Swiper;
@@ -20,8 +25,8 @@ const onSwiper = (Swiper: Swiper) => {
       :space-between="8"
       :allow-touch-move="true"
       :pagination="{ enabled: true, clickable: true, type: 'bullets' }"
-      navigation
-      keyboard
+      mousewheel
+      :free-mode="{ enabled: true }"
       @swiper="onSwiper"
     >
       <slot />
@@ -30,6 +35,9 @@ const onSwiper = (Swiper: Swiper) => {
 </template>
 
 <style>
+.swiper {
+  @apply py-3;
+}
 .swiper-pagination {
   @apply relative mt-4;
 }

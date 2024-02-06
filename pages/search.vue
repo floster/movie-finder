@@ -37,4 +37,8 @@ watch(
   display: flex;
   height: initial;
 }
+
+.swiper-slide .el-button {
+  height: 100%;
+}
 </style>

@@ -8,9 +8,14 @@ const resultsQty = computed(() =>
 </script>
 
 <template>
-  <h3 v-if="search.query">
-    {{ resultsQty }} results found for <mark>{{ search.query }}</mark>
-  </h3>
+  <header
+    v-if="search.query"
+    class="flex gap-4 flex-col md:flex-row items-end md:items-center md:justify-between"
+  >
+    <h3 class="text-slate-400 text-sm">
+      <strong>{{ resultsQty }}</strong> results found for
+      <mark>{{ search.query }}</mark>
+    </h3>
+    <SearchResultsControls />
+  </header>
 </template>
-
-<style scoped></style>

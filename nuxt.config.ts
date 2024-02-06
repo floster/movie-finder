@@ -27,6 +27,6 @@ export default defineNuxtConfig({
     },
   },
   swiper: {
-    modules: ["navigation", "pagination", "keyboard"],
+    modules: ["navigation", "pagination", "mousewheel", "free-mode"],
   },
 });

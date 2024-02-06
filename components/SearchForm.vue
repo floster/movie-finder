@@ -6,6 +6,13 @@ const search = useSearchStore();
 
 const searchTerm = ref(search.query);
 
+const clearTermHandler = () => {
+  searchTerm.value = "";
+  search.resetSearch();
+
+  router.push({ path: "/search" });
+};
+
 // just make redirect to the search page
 // with the search term as query param
 const onSubmit = () => {
@@ -22,6 +29,7 @@ const onSubmit = () => {
         size="large"
         clearable
         autofocus
+        @clear="clearTermHandler"
       >
       </el-input>
       <el-button
