@@ -47,7 +47,6 @@ export interface Movie {
   year: string;
   director: string;
   poster: string;
-  response: boolean;
 }
 
 export interface SearchResult {
@@ -59,6 +58,5 @@ export interface SearchResult {
 
 export interface Search {
   results: SearchResult[];
-  qty: string;
-  response: boolean;
+  qty: number;
 }

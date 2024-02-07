@@ -19,7 +19,7 @@ const search = useSearchStore();
     <el-button
       type="default"
       :icon="ArrowRightBold"
-      :disabled="!search.hasMoreResults"
+      :disabled="search.page >= search.pagesQty"
       @click="search.getNextSearchPage"
     ></el-button>
   </div>

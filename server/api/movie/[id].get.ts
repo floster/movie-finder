@@ -6,16 +6,24 @@ export default defineEventHandler(async (event) => {
   const movieId = getRouterParam(event, "id");
 
   const url = `${config.public.OMDB_API_BASE}${config.OMDB_API_KEY}&i=${movieId}`;
+  try {
+    const response = (await $fetch(url)) as MovieResponse;
 
-  const response = (await $fetch(url)) as MovieResponse;
+    if (response.Response === "False") return null;
 
-  const data: Movie = {
-    title: response.Title,
-    year: response.Year,
-    director: response.Director,
-    poster: response.Poster,
-    response: response.Response === "True" ? true : false,
-  };
+    const data: Movie = {
+      title: response.Title,
+      year: response.Year,
+      director: response.Director,
+      poster: response.Poster,
+    };
 
-  return data;
+    return data;
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage:
+        "OMDB API is not available at the moment. Please try again later.",
+    });
+  }
 });

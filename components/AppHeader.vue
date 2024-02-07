@@ -6,11 +6,10 @@ const router = useRouter();
 <template>
   <div class="flex items-center justify-between py-3">
     <h1 class="flex items-center gap-x-1 text-indigo-100 text-xl">
-      <NuxtImg
+      <el-image
         src="/apple-touch-icon.png"
-        alt="add a movie"
-        width="40"
-        height="40"
+        alt="MovieFinder logo"
+        class="w-10 h-10"
       />
       <span class="max-sm:hidden">MovieFinder</span>
     </h1>

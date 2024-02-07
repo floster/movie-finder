@@ -4,54 +4,35 @@ export const useSearchStore = defineStore("search", {
   state: () => ({
     query: "",
     page: 1,
-    results: [] as SearchResult[],
     resultsQty: 0,
-    searchInProgress: false,
   }),
   getters: {
-    hasResults: (state) => {
-      return state.results.length > 0;
-    },
     pagesQty: (state) => {
       return Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
     },
-    hasMoreResults: (state) => {
-      return state.page < Math.ceil(state.resultsQty / RESULTS_PER_PAGE);
-    },
   },
   actions: {
-    setSearch(query: string) {
-      this.resetSearch();
+    setSearchQuery(query: string = "") {
       this.query = query;
     },
+    setResultsQty(qty: number = 0) {
+      this.resultsQty = qty;
+    },
+    setCurrentPage(page: number = 1) {
+      this.page = page;
+    },
     resetSearch() {
-      this.page = 1;
-      this.query = "";
-      this.resultsQty = 0;
-      this.results = [];
+      this.setCurrentPage();
+      this.setSearchQuery();
+      this.setResultsQty();
     },
-    async search() {
-      if (!this.query) return;
-
-      this.searchInProgress = true;
-      const data = await $fetch(
-        `/api/search?q=${this.query}&page=${this.page}`
-      );
-
-      this.results = data && data.results ? data.results : [];
-      this.resultsQty = parseInt(data?.qty || "0", 10);
-
-      this.searchInProgress = false;
-    },
-    async getNextSearchPage() {
-      if (!this.hasMoreResults) return;
+    getNextSearchPage() {
+      if (this.page === this.pagesQty) return;
       this.page = this.page + 1;
-      await this.search();
     },
-    async getPrevSearchPage() {
+    getPrevSearchPage() {
       if (this.page <= 1) return;
       this.page = this.page - 1;
-      await this.search();
     },
   },
 });

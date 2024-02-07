@@ -5,13 +5,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "MovieFinder",
+      meta: [
+        {
+          name: "description",
+          content: "Search for movies and TV shows",
+        },
+      ],
     },
-    meta: [
-      {
-        name: "description",
-        content: "Search for movies and TV shows",
-      },
-    ],
   },
   runtimeConfig: {
     OMDB_API_KEY: process.env.OMDB_API_KEY,
@@ -24,9 +24,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/google-fonts",
     "@element-plus/nuxt",
-    "nuxt-icon",
     "nuxt-swiper",
-    "@nuxt/image",
   ],
   googleFonts: {
     families: {

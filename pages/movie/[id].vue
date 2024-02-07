@@ -1,31 +1,37 @@
 <script lang="ts" setup>
-const movieID = useRoute().params.id;
+const route = useRoute();
 
-const { data } = await useFetch(`/api/movie/${movieID}`);
+const movieID = ref<string | null>();
+
+watchEffect(() => {
+  movieID.value = route.params.id as string | null;
+});
+
+const { data, error, pending } = await useFetch(`/api/movie/${movieID.value}`, {
+  watch: [movieID],
+});
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value?.statusCode,
+    statusMessage: error.value?.statusMessage,
+  });
+}
 
 useHead({
   title: `${data.value?.title} | MovieFinder`,
 });
 
-const noMovieData = computed(() => !data.value?.response);
+const noMovieData = computed(() => !data.value);
 </script>
 
 <template>
-  <NuxtErrorBoundary>
-    <TheError
-      v-if="noMovieData"
-      message="No movie found"
-      backTo="/"
-      backToLabel="back to home"
-    />
-    <TheMovie v-else :data="data!" />
-
-    <template #error="{ error }">
-      <TheError
-        message="An error occurred while fetching the movie"
-        backTo="/"
-        backToLabel="back to home"
-      />
-    </template>
-  </NuxtErrorBoundary>
+  <TheSpinner v-if="pending && !error" />
+  <TheError
+    v-else-if="noMovieData"
+    :message="`No movie found with ID: ${movieID}`"
+    backTo="/"
+    backToLabel="back to home"
+  />
+  <TheMovie v-else :data="data!" />
 </template>

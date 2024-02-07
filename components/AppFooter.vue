@@ -1,13 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Right } from "@element-plus/icons-vue";
+</script>
 
 <template>
   <div class="flex justify-end py-2">
-    <a
+    <el-button
+      type="default"
+      tag="a"
       href="https://github.com/floster/movie-finder"
-      class="text-gray-600 hover:text-gray-900"
-      title="MovieFinder's Github repository"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <Icon name="jam:github" size="2rem" />
-    </a>
+      Github
+    </el-button>
   </div>
 </template>
