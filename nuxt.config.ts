@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         },
       ],
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   runtimeConfig: {
     OMDB_API_KEY: process.env.OMDB_API_KEY,
