@@ -16,7 +16,7 @@ const handleError = () => clearError({ redirect: "/" });
       <el-button type="primary" class="self-center mt-10" @click="handleError"
         >back to home</el-button
       >
-      <pre>{{ error?.stack }}</pre>
+      <!-- <pre>{{ error?.stack }}</pre> -->
     </div>
   </div>
 </template>

@@ -93,7 +93,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
         <el-button type="primary" @click="submitForm(movieFormRef)"
           >Add movie</el-button
         >
-        <el-button @click="resetForm(movieFormRef)">Reset fields</el-button>
+        <el-button @click="resetForm(movieFormRef)">Reset</el-button>
       </el-form-item>
     </el-form>
   </div>
