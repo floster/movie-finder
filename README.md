@@ -1,75 +1,22 @@
-# Nuxt 3 Minimal Starter
+# MovieFinder
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Find a movie using OMDb API (nuxt, pinia, tailwind, element+) 
 
-## Setup
+---
 
-Make sure to install the dependencies:
-
+### start project:
 ```bash
-# npm
-npm install
+git clone git@github.com:floster/movie-finder.git
 
-# pnpm
-pnpm install
+cd movie-finder
 
-# yarn
-yarn install
-
-# bun
 bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
 
-Build the application for production:
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+#### note that you need to have [OMDb API key](https://www.omdbapi.com/apikey.aspx) in `.env`:
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+OMDB_API_KEY=XXXXXXXX
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
